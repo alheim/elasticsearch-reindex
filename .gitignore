@@ -3,3 +3,6 @@ nb-configuration.xml
 *~
 data/
 deploy.sh
+es-reindex.sublime-project
+es-reindex.sublime-workspace
+
