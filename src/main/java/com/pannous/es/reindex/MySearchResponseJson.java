@@ -181,6 +181,10 @@ public class MySearchResponseJson implements MySearchResponse {
             return parent;
         }
 
+        @Override public String routing() {
+           return "";
+        }
+
         @Override public long version() {
             return version;
         }

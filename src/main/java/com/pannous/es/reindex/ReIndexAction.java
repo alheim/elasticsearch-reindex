@@ -30,7 +30,7 @@ import static org.elasticsearch.rest.RestStatus.*;
 public class ReIndexAction extends BaseRestHandler {
 
     @Inject public ReIndexAction(Settings settings, Client client, RestController controller) {
-        super(settings, controller, client);
+        super(settings, client);
 
         if (controller != null) {
             // Define REST endpoints to do a reindex
@@ -98,6 +98,7 @@ public class ReIndexAction extends BaseRestHandler {
                 setSearchType(SearchType.SCAN).
                 addField("_source").
                 addField("_parent").
+                addField("_routing").
                 setScroll(TimeValue.timeValueMinutes(keepTimeInMinutes));
 
         if (filter != null && !filter.trim().isEmpty())
@@ -163,6 +164,9 @@ public class ReIndexAction extends BaseRestHandler {
                     indexReq.version(hit.version());
                 if (hit.parent() != null && !hit.parent().isEmpty()) {
                     indexReq.parent(hit.parent());
+                }
+                if (hit.routing() != null && !hit.routing().isEmpty()) {
+                    indexReq.routing(hit.routing());
                 }
                 brb.add(indexReq);
             } catch (Exception ex) {

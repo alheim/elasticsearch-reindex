@@ -161,6 +161,9 @@ public class ExampleUsage {
         @Override public String parent() {
             return parent;
         }
+        @Override public String routing() {
+            return parent;
+        }        
         @Override public long version() {
             return version;
         }

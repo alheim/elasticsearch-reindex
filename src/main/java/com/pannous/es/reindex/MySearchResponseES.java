@@ -111,6 +111,12 @@ public class MySearchResponseES implements MySearchResponse {
            return "";
         }
 
+        @Override public String routing() {
+           if (sh.field("_routing") != null)
+              return sh.field("_routing").value();
+           return "";
+        }
+
         @Override public long version() {
             return sh.version();
         }

@@ -24,6 +24,8 @@ public interface MySearchHit {
 
     String parent();
 
+    String routing();
+
     long version();
 
     byte[] source();
